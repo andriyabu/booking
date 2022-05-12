@@ -23,6 +23,15 @@ const Header = () => {
       room: 1,
   });
 
+  const handleOption = (name, operation) => {
+      setOptions((prev) => {
+          return {
+              ...prev,
+              [name]: operation == "i" ? options[name] + 1 : options[name] - 1,
+          }
+      })
+  }
+
   return (
     <div className='header'>
         <div className="headerContainer">
@@ -81,7 +90,7 @@ const Header = () => {
                 />}
             </div>
             <div className="headerSearchItem">
-                <FontAwesomeIcon ic  on={faPerson} className="headerIcon" />
+                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
                 <span className='headerSearchText' onClick={() => {
                         setOpenOptions(!openOptions)
                         if (openDate) {
@@ -95,18 +104,18 @@ const Header = () => {
                     <div className="optionItem">
                         <span className="optionText">Adult</span>
                         <div className="optionCounter">
-                            <button className="optionCounterButton">-</button>
-                            <span className="optionCounterNumber">1</span>
-                            <button className="optionCounterButton">+</button>
+                            <button disabled={options.adult <= 1} className="optionCounterButton" onClick={() => handleOption("adult","d")}>-</button>
+                            <span className="optionCounterNumber">{options.adult}</span>
+                            <button className="optionCounterButton" onClick={() => handleOption("adult","i")}>+</button>
                         </div>
                     </div>
 
                     <div className="optionItem">
                         <span className="optionText">Children</span>
                         <div className="optionCounter">
-                            <button className="optionCounterButton">-</button>
-                            <span className ="optionCounterNumber">0</span>
-                            <button className="optionCounterButton">+</button>
+                            <button disabled={options.children <= 0} className="optionCounterButton" onClick={() => handleOption("children","d")}>-</button>
+                            <span className ="optionCounterNumber">{options.children}</span>
+                            <button className="optionCounterButton" onClick={ () => handleOption("children","i")}>+</button>
                         </div>
 
                     </div>
@@ -114,9 +123,9 @@ const Header = () => {
                     <div className="optionItem">
                         <span className="optionText">Room</span>
                         <div className="optionCounter">
-                            <button className="optionCounterButton">-</button>
-                            <span className="optionCounterNumber">1</span>
-                            <button className="optionCounterButton">+</button>
+                            <button disabled={options.room <= 1} className="optionCounterButton" onClick={() => handleOption("room","d")}>-</button>
+                            <span className="optionCounterNumber">{options.room}</span>
+                            <button className="optionCounterButton" onClick={() => handleOption("room","i")}>+</button>
                         </div>
                     </div>
                 </div>}

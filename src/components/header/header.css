@@ -3,7 +3,7 @@
     color: white;
     display: flex;
     justify-content: center;
-    border-top: 1px solid white;
+    /* border-top: 1px solid white; */
     padding: 0px 10px;
     position: relative;
 }
@@ -65,7 +65,8 @@
     position: absolute;
     bottom: -25px;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1024px;
+    z-index: 2;
 }
 
 .headerIcon{
@@ -92,6 +93,7 @@
 .date{
     position: absolute;
     top: 50px;
+    
 }
 
 .options{
